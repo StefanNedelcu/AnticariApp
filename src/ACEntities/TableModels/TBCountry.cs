@@ -9,12 +9,12 @@ namespace ACEntities.TableModels
     {
         public TBCountry()
         {
-            Tbcities = new HashSet<TBCity>();
+            TBCities = new HashSet<TBCity>();
         }
 
         public long IdCountry { get; set; }
         public string CountryName { get; set; }
 
-        public virtual ICollection<TBCity> Tbcities { get; set; }
+        public virtual ICollection<TBCity> TBCities { get; set; }
     }
 }

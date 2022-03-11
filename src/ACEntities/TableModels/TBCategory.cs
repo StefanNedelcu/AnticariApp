@@ -9,17 +9,17 @@ namespace ACEntities.TableModels
     {
         public TBCategory()
         {
-            TbbookCategories = new HashSet<TBBookCategory>();
-            TbexchangeOffers = new HashSet<TBExchangeOffer>();
-            TbuserCategoryPreferences = new HashSet<TBUserCategoryPreference>();
+            TBBookCategories = new HashSet<TBBookCategory>();
+            TBExchangeOffers = new HashSet<TBExchangeOffer>();
+            TBUserCategoryPreferences = new HashSet<TBUserCategoryPreference>();
         }
 
         public long IdCategory { get; set; }
         public string CategoryName { get; set; }
         public string CategoryDescription { get; set; }
 
-        public virtual ICollection<TBBookCategory> TbbookCategories { get; set; }
-        public virtual ICollection<TBExchangeOffer> TbexchangeOffers { get; set; }
-        public virtual ICollection<TBUserCategoryPreference> TbuserCategoryPreferences { get; set; }
+        public virtual ICollection<TBBookCategory> TBBookCategories { get; set; }
+        public virtual ICollection<TBExchangeOffer> TBExchangeOffers { get; set; }
+        public virtual ICollection<TBUserCategoryPreference> TBUserCategoryPreferences { get; set; }
     }
 }

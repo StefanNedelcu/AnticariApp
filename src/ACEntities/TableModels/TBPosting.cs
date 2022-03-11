@@ -9,8 +9,8 @@ namespace ACEntities.TableModels
     {
         public TBPosting()
         {
-            TbexchangeOffers = new HashSet<TBExchangeOffer>();
-            TbpostingImages = new HashSet<TBPostingImage>();
+            TBExchangeOffers = new HashSet<TBExchangeOffer>();
+            TBPostingImages = new HashSet<TBPostingImage>();
         }
 
         public long IdPosting { get; set; }
@@ -24,7 +24,7 @@ namespace ACEntities.TableModels
 
         public virtual TBBook IdBookNavigation { get; set; }
         public virtual TBUser IdOwnerUserNavigation { get; set; }
-        public virtual ICollection<TBExchangeOffer> TbexchangeOffers { get; set; }
-        public virtual ICollection<TBPostingImage> TbpostingImages { get; set; }
+        public virtual ICollection<TBExchangeOffer> TBExchangeOffers { get; set; }
+        public virtual ICollection<TBPostingImage> TBPostingImages { get; set; }
     }
 }

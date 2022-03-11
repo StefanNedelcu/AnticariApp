@@ -9,7 +9,7 @@ namespace ACEntities.TableModels
     {
         public TBCity()
         {
-            TbuserAddresses = new HashSet<TBUserAddress>();
+            TBUserAddresses = new HashSet<TBUserAddress>();
         }
 
         public long IdCity { get; set; }
@@ -17,6 +17,6 @@ namespace ACEntities.TableModels
         public string CityName { get; set; }
 
         public virtual TBCountry IdCountryNavigation { get; set; }
-        public virtual ICollection<TBUserAddress> TbuserAddresses { get; set; }
+        public virtual ICollection<TBUserAddress> TBUserAddresses { get; set; }
     }
 }

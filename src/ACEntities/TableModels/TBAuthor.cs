@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-#nullable disable
+﻿#nullable disable
 
 namespace ACEntities.TableModels
 {
@@ -9,17 +6,17 @@ namespace ACEntities.TableModels
     {
         public TBAuthor()
         {
-            Tbbooks = new HashSet<TBBook>();
-            TbexchangeOffers = new HashSet<TBExchangeOffer>();
-            TbuserAuthorPreferences = new HashSet<TBUserAuthorPreference>();
+            TBBooks = new HashSet<TBBook>();
+            TBExchangeOffers = new HashSet<TBExchangeOffer>();
+            TBUserAuthorPreferences = new HashSet<TBUserAuthorPreference>();
         }
 
         public long IdAuthor { get; set; }
         public string AuthorName { get; set; }
         public string AuthorDescription { get; set; }
 
-        public virtual ICollection<TBBook> Tbbooks { get; set; }
-        public virtual ICollection<TBExchangeOffer> TbexchangeOffers { get; set; }
-        public virtual ICollection<TBUserAuthorPreference> TbuserAuthorPreferences { get; set; }
+        public virtual ICollection<TBBook> TBBooks { get; set; }
+        public virtual ICollection<TBExchangeOffer> TBExchangeOffers { get; set; }
+        public virtual ICollection<TBUserAuthorPreference> TBUserAuthorPreferences { get; set; }
     }
 }

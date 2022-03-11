@@ -9,10 +9,10 @@ namespace ACEntities.TableModels
     {
         public TBBook()
         {
-            TbbookCategories = new HashSet<TBBookCategory>();
-            TbexchangeOffers = new HashSet<TBExchangeOffer>();
-            Tbpostings = new HashSet<TBPosting>();
-            TbuserWishlistItems = new HashSet<TBUserWishlistItem>();
+            TBBookCategories = new HashSet<TBBookCategory>();
+            TBExchangeOffers = new HashSet<TBExchangeOffer>();
+            TBPostings = new HashSet<TBPosting>();
+            TBUserWishlistItems = new HashSet<TBUserWishlistItem>();
         }
 
         public long IdBook { get; set; }
@@ -21,9 +21,9 @@ namespace ACEntities.TableModels
         public string BookDescription { get; set; }
 
         public virtual TBAuthor IdAuthorNavigation { get; set; }
-        public virtual ICollection<TBBookCategory> TbbookCategories { get; set; }
-        public virtual ICollection<TBExchangeOffer> TbexchangeOffers { get; set; }
-        public virtual ICollection<TBPosting> Tbpostings { get; set; }
-        public virtual ICollection<TBUserWishlistItem> TbuserWishlistItems { get; set; }
+        public virtual ICollection<TBBookCategory> TBBookCategories { get; set; }
+        public virtual ICollection<TBExchangeOffer> TBExchangeOffers { get; set; }
+        public virtual ICollection<TBPosting> TBPostings { get; set; }
+        public virtual ICollection<TBUserWishlistItem> TBUserWishlistItems { get; set; }
     }
 }

@@ -9,12 +9,12 @@ namespace ACEntities.TableModels
     {
         public TBUser()
         {
-            Tbpostings = new HashSet<TBPosting>();
-            TbuserAddresses = new HashSet<TBUserAddress>();
-            TbuserAuthorPreferences = new HashSet<TBUserAuthorPreference>();
-            TbuserCategoryPreferences = new HashSet<TBUserCategoryPreference>();
-            TbuserStatistics = new HashSet<TBUserStatistic>();
-            TbuserWishlistItems = new HashSet<TBUserWishlistItem>();
+            TBPostings = new HashSet<TBPosting>();
+            TBUserAddresses = new HashSet<TBUserAddress>();
+            TBUserAuthorPreferences = new HashSet<TBUserAuthorPreference>();
+            TBUserCategoryPreferences = new HashSet<TBUserCategoryPreference>();
+            TBUserStatistics = new HashSet<TBUserStatistic>();
+            TBUserWishlistItems = new HashSet<TBUserWishlistItem>();
         }
 
         public long IdUser { get; set; }
@@ -25,11 +25,11 @@ namespace ACEntities.TableModels
         public int UserRole { get; set; }
         public DateTime CreatedAt { get; set; }
 
-        public virtual ICollection<TBPosting> Tbpostings { get; set; }
-        public virtual ICollection<TBUserAddress> TbuserAddresses { get; set; }
-        public virtual ICollection<TBUserAuthorPreference> TbuserAuthorPreferences { get; set; }
-        public virtual ICollection<TBUserCategoryPreference> TbuserCategoryPreferences { get; set; }
-        public virtual ICollection<TBUserStatistic> TbuserStatistics { get; set; }
-        public virtual ICollection<TBUserWishlistItem> TbuserWishlistItems { get; set; }
+        public virtual ICollection<TBPosting> TBPostings { get; set; }
+        public virtual ICollection<TBUserAddress> TBUserAddresses { get; set; }
+        public virtual ICollection<TBUserAuthorPreference> TBUserAuthorPreferences { get; set; }
+        public virtual ICollection<TBUserCategoryPreference> TBUserCategoryPreferences { get; set; }
+        public virtual ICollection<TBUserStatistic> TBUserStatistics { get; set; }
+        public virtual ICollection<TBUserWishlistItem> TBUserWishlistItems { get; set; }
     }
 }
