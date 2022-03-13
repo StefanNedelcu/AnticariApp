@@ -1,5 +1,6 @@
 using ACEntities.Context;
 using ACUtils.Configuration;
+using NetCore.AutoRegisterDi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ACContext>();
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 builder.Services.Configure<ConnectionStrings>(builder.Configuration.GetSection("ConnectionStrings"));
+var results = builder.Services.RegisterAssemblyPublicNonGenericClasses(typeof(ACDataServices.Services.DataService).Assembly)
+    .Where(c => c.Name.EndsWith("Service"))
+    .AsPublicImplementedInterfaces();
 
 var app = builder.Build();
 

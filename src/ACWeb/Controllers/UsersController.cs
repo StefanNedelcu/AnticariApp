@@ -15,22 +15,10 @@ namespace ACWeb.Controllers
             _context = context;
         }
 
-        [HttpGet("chestie")]
+        [HttpGet]
         public IEnumerable<TBUser> GetUsers()
         {
             return _context.TBUsers;
-        }
-
-        [HttpGet("{id}")] // search syntax
-        public TBUser GetUser(long id)
-        {
-            return null;
-        }
-
-        [HttpGet("/api/books/{id}")]
-        public TBBook GetBook(long id)
-        {
-            return null;
-        }
+        }        
     }
 }
