@@ -10,15 +10,21 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ACContext>();
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 builder.Services.Configure<ConnectionStrings>(builder.Configuration.GetSection("ConnectionStrings"));
-var results = builder.Services.RegisterAssemblyPublicNonGenericClasses(typeof(ACDataServices.Services.DataService).Assembly)
+builder.Services.RegisterAssemblyPublicNonGenericClasses(typeof(ACDataServices.Services.DataService).Assembly)
     .Where(c => c.Name.EndsWith("Service"))
     .AsPublicImplementedInterfaces();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "AnticariApp API");
+        c.RoutePrefix = "swagger";
+    });
 }
 
 app.UseStaticFiles();
