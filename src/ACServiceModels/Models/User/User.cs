@@ -1,4 +1,4 @@
-﻿namespace ACServiceModels.Models.Users
+﻿namespace ACServiceModels.Models.User
 {
     public class User
     {

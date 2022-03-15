@@ -1,6 +1,6 @@
-﻿namespace ACServiceModels.Models.Authentication
+﻿namespace ACServiceModels.Models.User
 {
-    public class UserRegistrationData
+    public class RegistrationRequest
     {
         public string Email { get; set; }
         public string FirstName { get; set; }

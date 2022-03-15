@@ -1,4 +1,4 @@
-﻿namespace ACServiceModels.Models
+﻿namespace ACServiceModels.Models.User
 {
     public enum UserRoles
     {
