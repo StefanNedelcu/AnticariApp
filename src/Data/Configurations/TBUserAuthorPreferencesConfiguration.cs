@@ -17,13 +17,13 @@ public class TBUserAuthorPreferencesConfiguration : IEntityTypeConfiguration<TBU
 
         entity.HasIndex(e => e.IdUser, "AuthorPreference_to_User_FK_idx");
 
-        entity.HasOne(d => d.IdAuthorNavigation)
+        entity.HasOne(d => d.Author)
             .WithMany(p => p.TBUserAuthorPreferences)
             .HasForeignKey(d => d.IdAuthor)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("AuthorPreference_to_Author_FK");
 
-        entity.HasOne(d => d.IdUserNavigation)
+        entity.HasOne(d => d.User)
             .WithMany(p => p.TBUserAuthorPreferences)
             .HasForeignKey(d => d.IdUser)
             .OnDelete(DeleteBehavior.ClientSetNull)

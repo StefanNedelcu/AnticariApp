@@ -8,5 +8,5 @@ public partial class TBPostingImage
     public long IdPosting { get; set; }
     public string ImgSrc { get; set; }
 
-    public virtual TBPosting IdPostingNavigation { get; set; }
+    public virtual TBPosting Posting { get; set; }
 }

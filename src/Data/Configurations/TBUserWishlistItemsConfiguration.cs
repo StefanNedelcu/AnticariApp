@@ -17,13 +17,13 @@ public class TBUserWishlistItemsConfiguration : IEntityTypeConfiguration<TBUserW
 
         entity.HasIndex(e => e.IdUser, "WishlistItem_to_User_FK_idx");
 
-        entity.HasOne(d => d.IdBookNavigation)
+        entity.HasOne(d => d.Book)
             .WithMany(p => p.TBUserWishlistItems)
             .HasForeignKey(d => d.IdBook)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("WishlistItem_to_Book_FK");
 
-        entity.HasOne(d => d.IdUserNavigation)
+        entity.HasOne(d => d.User)
             .WithMany(p => p.TBUserWishlistItems)
             .HasForeignKey(d => d.IdUser)
             .OnDelete(DeleteBehavior.ClientSetNull)

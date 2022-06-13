@@ -13,6 +13,6 @@ public partial class TBCity
     public long IdCountry { get; set; }
     public string CityName { get; set; }
 
-    public virtual TBCountry IdCountryNavigation { get; set; }
+    public virtual TBCountry Country { get; set; }
     public virtual ICollection<TBUserAddress> TBUserAddresses { get; set; }
 }

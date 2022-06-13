@@ -11,6 +11,6 @@ public partial class TBUserAddress
     public int? StreetNumber { get; set; }
     public string ZipCode { get; set; }
 
-    public virtual TBCity IdCityNavigation { get; set; }
-    public virtual TBUser IdUserNavigation { get; set; }
+    public virtual TBCity City { get; set; }
+    public virtual TBUser User { get; set; }
 }

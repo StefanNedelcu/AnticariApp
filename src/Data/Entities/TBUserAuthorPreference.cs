@@ -8,6 +8,6 @@ public partial class TBUserAuthorPreference
     public long IdUser { get; set; }
     public long IdAuthor { get; set; }
 
-    public virtual TBAuthor IdAuthorNavigation { get; set; }
-    public virtual TBUser IdUserNavigation { get; set; }
+    public virtual TBAuthor Author { get; set; }
+    public virtual TBUser User { get; set; }
 }

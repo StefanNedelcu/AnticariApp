@@ -10,8 +10,8 @@ public partial class TBExchangeOffer
     public long? IdCategory { get; set; }
     public long? IdBook { get; set; }
 
-    public virtual TBAuthor IdAuthorNavigation { get; set; }
-    public virtual TBBook IdBookNavigation { get; set; }
-    public virtual TBCategory IdCategoryNavigation { get; set; }
-    public virtual TBPosting IdPostingNavigation { get; set; }
+    public virtual TBAuthor Author { get; set; }
+    public virtual TBBook Book { get; set; }
+    public virtual TBCategory Category { get; set; }
+    public virtual TBPosting Posting { get; set; }
 }

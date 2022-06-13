@@ -17,13 +17,13 @@ public class TBUserCategoryPreferencesConfiguration : IEntityTypeConfiguration<T
 
         entity.HasIndex(e => e.IdUser, "CategoryPreference_to_User_FK_idx");
 
-        entity.HasOne(d => d.IdCategoryNavigation)
+        entity.HasOne(d => d.Category)
             .WithMany(p => p.TBUserCategoryPreferences)
             .HasForeignKey(d => d.IdCategory)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("CategoryPreference_to_Category_FK");
 
-        entity.HasOne(d => d.IdUserNavigation)
+        entity.HasOne(d => d.User)
             .WithMany(p => p.TBUserCategoryPreferences)
             .HasForeignKey(d => d.IdUser)
             .OnDelete(DeleteBehavior.ClientSetNull)

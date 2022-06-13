@@ -19,8 +19,8 @@ public partial class TBPosting
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
 
-    public virtual TBBook IdBookNavigation { get; set; }
-    public virtual TBUser IdOwnerUserNavigation { get; set; }
+    public virtual TBBook Book { get; set; }
+    public virtual TBUser Owner { get; set; }
     public virtual ICollection<TBExchangeOffer> TBExchangeOffers { get; set; }
     public virtual ICollection<TBPostingImage> TBPostingImages { get; set; }
 }

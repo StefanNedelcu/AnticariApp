@@ -8,6 +8,6 @@ public partial class TBUserWishlistItem
     public long IdUser { get; set; }
     public long IdBook { get; set; }
 
-    public virtual TBBook IdBookNavigation { get; set; }
-    public virtual TBUser IdUserNavigation { get; set; }
+    public virtual TBBook Book { get; set; }
+    public virtual TBUser User { get; set; }
 }

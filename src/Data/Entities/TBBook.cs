@@ -17,7 +17,7 @@ public partial class TBBook
     public string BookTitle { get; set; }
     public string BookDescription { get; set; }
 
-    public virtual TBAuthor IdAuthorNavigation { get; set; }
+    public virtual TBAuthor Author { get; set; }
     public virtual ICollection<TBBookCategory> TBBookCategories { get; set; }
     public virtual ICollection<TBExchangeOffer> TBExchangeOffers { get; set; }
     public virtual ICollection<TBPosting> TBPostings { get; set; }

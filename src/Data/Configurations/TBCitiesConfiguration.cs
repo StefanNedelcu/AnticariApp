@@ -19,7 +19,7 @@ public class TBCitiesConfiguration : IEntityTypeConfiguration<TBCity>
             .IsRequired()
             .HasMaxLength(45);
 
-        entity.HasOne(d => d.IdCountryNavigation)
+        entity.HasOne(d => d.Country)
             .WithMany(p => p.TBCities)
             .HasForeignKey(d => d.IdCountry)
             .OnDelete(DeleteBehavior.ClientSetNull)

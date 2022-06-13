@@ -19,7 +19,7 @@ public class TBPostingImagesConfiguration : IEntityTypeConfiguration<TBPostingIm
             .IsRequired()
             .HasMaxLength(255);
 
-        entity.HasOne(d => d.IdPostingNavigation)
+        entity.HasOne(d => d.Posting)
             .WithMany(p => p.TBPostingImages)
             .HasForeignKey(d => d.IdPosting)
             .OnDelete(DeleteBehavior.ClientSetNull)

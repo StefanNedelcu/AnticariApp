@@ -21,7 +21,7 @@ public class TBBooksConfiguration : IEntityTypeConfiguration<TBBook>
             .IsRequired()
             .HasMaxLength(45);
 
-        entity.HasOne(d => d.IdAuthorNavigation)
+        entity.HasOne(d => d.Author)
             .WithMany(p => p.TBBooks)
             .HasForeignKey(d => d.IdAuthor)
             .OnDelete(DeleteBehavior.ClientSetNull)

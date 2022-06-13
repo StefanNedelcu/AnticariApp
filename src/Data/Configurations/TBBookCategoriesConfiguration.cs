@@ -17,13 +17,13 @@ public class TBBookCategoriesConfiguration : IEntityTypeConfiguration<TBBookCate
 
         entity.HasIndex(e => e.IdCategory, "BookCategory_to_Category_FK_idx");
 
-        entity.HasOne(d => d.IdBookNavigation)
+        entity.HasOne(d => d.Book)
             .WithMany(p => p.TBBookCategories)
             .HasForeignKey(d => d.IdBook)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("BookCategory_to_Book_FK");
 
-        entity.HasOne(d => d.IdCategoryNavigation)
+        entity.HasOne(d => d.Category)
             .WithMany(p => p.TBBookCategories)
             .HasForeignKey(d => d.IdCategory)
             .OnDelete(DeleteBehavior.ClientSetNull)

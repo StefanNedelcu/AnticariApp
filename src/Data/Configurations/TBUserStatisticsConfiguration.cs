@@ -17,7 +17,7 @@ public class TBUserStatisticsConfiguration : IEntityTypeConfiguration<TBUserStat
 
         entity.Property(e => e.UserAvgRating).HasColumnType("decimal(2,2)");
 
-        entity.HasOne(d => d.IdUserNavigation)
+        entity.HasOne(d => d.User)
             .WithMany(p => p.TBUserStatistics)
             .HasForeignKey(d => d.IdUser)
             .OnDelete(DeleteBehavior.ClientSetNull)

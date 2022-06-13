@@ -10,7 +10,9 @@ namespace AnticariApp.Application.User
     public interface IUserService
     {
         public IEnumerable<User> Index();
+
         public long Register(RegistrationRequest model);
+
         public bool Authenticate(AuthenticationRequest model);
     }
 

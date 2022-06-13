@@ -25,13 +25,13 @@ public class TBUserAddressesConfiguration : IEntityTypeConfiguration<TBUserAddre
             .IsRequired()
             .HasMaxLength(45);
 
-        entity.HasOne(d => d.IdCityNavigation)
+        entity.HasOne(d => d.City)
             .WithMany(p => p.TBUserAddresses)
             .HasForeignKey(d => d.IdCity)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("Address_to_City_FK");
 
-        entity.HasOne(d => d.IdUserNavigation)
+        entity.HasOne(d => d.User)
             .WithMany(p => p.TBUserAddresses)
             .HasForeignKey(d => d.IdUser)
             .OnDelete(DeleteBehavior.ClientSetNull)

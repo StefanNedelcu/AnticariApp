@@ -8,6 +8,6 @@ public partial class TBUserCategoryPreference
     public long IdUser { get; set; }
     public long IdCategory { get; set; }
 
-    public virtual TBCategory IdCategoryNavigation { get; set; }
-    public virtual TBUser IdUserNavigation { get; set; }
+    public virtual TBCategory Category { get; set; }
+    public virtual TBUser User { get; set; }
 }

@@ -21,22 +21,22 @@ public class TBExchangeOffersConfiguration : IEntityTypeConfiguration<TBExchange
 
         entity.HasIndex(e => e.IdPosting, "ExchangeOffer_to_Posting_FK_idx");
 
-        entity.HasOne(d => d.IdAuthorNavigation)
+        entity.HasOne(d => d.Author)
             .WithMany(p => p.TBExchangeOffers)
             .HasForeignKey(d => d.IdAuthor)
             .HasConstraintName("ExchangeOffer_to_Author_FK");
 
-        entity.HasOne(d => d.IdBookNavigation)
+        entity.HasOne(d => d.Book)
             .WithMany(p => p.TBExchangeOffers)
             .HasForeignKey(d => d.IdBook)
             .HasConstraintName("ExchangeOffer_to_Book_FK");
 
-        entity.HasOne(d => d.IdCategoryNavigation)
+        entity.HasOne(d => d.Category)
             .WithMany(p => p.TBExchangeOffers)
             .HasForeignKey(d => d.IdCategory)
             .HasConstraintName("ExchangeOffer_to_Category_FK");
 
-        entity.HasOne(d => d.IdPostingNavigation)
+        entity.HasOne(d => d.Posting)
             .WithMany(p => p.TBExchangeOffers)
             .HasForeignKey(d => d.IdPosting)
             .OnDelete(DeleteBehavior.ClientSetNull)

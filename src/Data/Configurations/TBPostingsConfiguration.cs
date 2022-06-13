@@ -21,13 +21,13 @@ public class TBPostingsConfiguration : IEntityTypeConfiguration<TBPosting>
 
         entity.Property(e => e.Price).HasColumnType("decimal(10,2)");
 
-        entity.HasOne(d => d.IdBookNavigation)
+        entity.HasOne(d => d.Book)
             .WithMany(p => p.TBPostings)
             .HasForeignKey(d => d.IdBook)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("Posting_to_Book_FK");
 
-        entity.HasOne(d => d.IdOwnerUserNavigation)
+        entity.HasOne(d => d.Owner)
             .WithMany(p => p.TBPostings)
             .HasForeignKey(d => d.IdOwnerUser)
             .OnDelete(DeleteBehavior.ClientSetNull)

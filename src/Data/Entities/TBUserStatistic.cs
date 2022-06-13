@@ -11,5 +11,5 @@ public partial class TBUserStatistic
     public int ReadBooks { get; set; }
     public DateTime UpdatedAt { get; set; }
 
-    public virtual TBUser IdUserNavigation { get; set; }
+    public virtual TBUser User { get; set; }
 }
