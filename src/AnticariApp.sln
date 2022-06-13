@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACWeb", "ACWeb\ACWeb.csproj", "{FFE69F55-44F7-4C94-ACE1-CC79577F4D7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnticariApp.API", "Api\AnticariApp.API.csproj", "{FFE69F55-44F7-4C94-ACE1-CC79577F4D7E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACEntities", "ACEntities\ACEntities.csproj", "{38D6BC68-81AF-462A-9BF7-18C462C316FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnticariApp.Data", "Data\AnticariApp.Data.csproj", "{38D6BC68-81AF-462A-9BF7-18C462C316FD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACUtils", "ACUtils\ACUtils.csproj", "{2EF3D7B8-7E52-4073-949A-45B514969806}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnticariApp.Utils", "Utils\AnticariApp.Utils.csproj", "{2EF3D7B8-7E52-4073-949A-45B514969806}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACDataServices", "ACDataServices\ACDataServices.csproj", "{D20BAA9D-CB19-424D-80E9-FC5996238012}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACServiceModels", "ACServiceModels\ACServiceModels.csproj", "{903F3630-9B0F-4918-A34F-70B7BA8C5157}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnticariApp.Application", "Application\AnticariApp.Application.csproj", "{D20BAA9D-CB19-424D-80E9-FC5996238012}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +33,6 @@ Global
 		{D20BAA9D-CB19-424D-80E9-FC5996238012}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D20BAA9D-CB19-424D-80E9-FC5996238012}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D20BAA9D-CB19-424D-80E9-FC5996238012}.Release|Any CPU.Build.0 = Release|Any CPU
-		{903F3630-9B0F-4918-A34F-70B7BA8C5157}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{903F3630-9B0F-4918-A34F-70B7BA8C5157}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{903F3630-9B0F-4918-A34F-70B7BA8C5157}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{903F3630-9B0F-4918-A34F-70B7BA8C5157}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
