@@ -1,20 +1,17 @@
-using AnticariApp.Data.Context;
 using AnticariApp.Utils.Configuration;
-using AnticariApp.Application.Common;
-using NetCore.AutoRegisterDi;
+using AnticariApp.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<ACContext>();
+builder.Services.AddDataServices();
+builder.Services.AddACContext();
+builder.Services.AddSwaggerGen();
+
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 builder.Services.Configure<ConnectionStrings>(builder.Configuration.GetSection("ConnectionStrings"));
-builder.Services.RegisterAssemblyPublicNonGenericClasses(typeof(DataService).Assembly)
-    .Where(c => c.Name.EndsWith("Service"))
-    .AsPublicImplementedInterfaces();
-builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
