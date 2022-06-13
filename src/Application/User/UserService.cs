@@ -1,7 +1,7 @@
 ﻿using AnticariApp.Application.Common;
 using AnticariApp.Application.Common.Enums;
 using AnticariApp.Data.Context;
-using AnticariApp.Data.TableModels;
+using AnticariApp.Data.Entities;
 using AnticariApp.Utils.Extensions;
 using AnticariApp.Utils.Helpers;
 

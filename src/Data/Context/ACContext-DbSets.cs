@@ -1,4 +1,4 @@
-﻿using AnticariApp.Data.TableModels;
+﻿using AnticariApp.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace AnticariApp.Data.Context;
