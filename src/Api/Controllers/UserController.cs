@@ -19,9 +19,9 @@ public class UserController : ACController
     }
 
     [HttpPost]
-    public IActionResult Register(RegistrationRequest model)
+    public async Task<ActionResult> Register(RegistrationRequest model)
     {
-        var userId = _userService.Register(model);
+        var userId = await _userService.Register(model);
         if (userId == 0)
         {
             return BadRequest(new { message = "Your email address is already in use!" });
@@ -31,9 +31,9 @@ public class UserController : ACController
     }
 
     [HttpPost("login")]
-    public IActionResult Login(AuthenticationRequest model)
+    public async Task<ActionResult> Login(AuthenticationRequest model)
     {
-        var correctCredentials = _userService.Authenticate(model);
+        var correctCredentials = await _userService.Authenticate(model);
         if (!correctCredentials)
         {
             return BadRequest(new { message = "Wrong credentials!" });

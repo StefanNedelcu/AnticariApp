@@ -1,9 +1,10 @@
 ﻿using AnticariApp.Application.Common;
-using AnticariApp.Application.Common.Enums;
 using AnticariApp.Data.Context;
 using AnticariApp.Data.Entities;
+using AnticariApp.Utils.Enums;
 using AnticariApp.Utils.Extensions;
 using AnticariApp.Utils.Helpers;
+using Microsoft.EntityFrameworkCore;
 
 namespace AnticariApp.Application.User
 {
@@ -11,9 +12,9 @@ namespace AnticariApp.Application.User
     {
         public IEnumerable<User> Index();
 
-        public long Register(RegistrationRequest model);
+        public Task<long> Register(RegistrationRequest model);
 
-        public bool Authenticate(AuthenticationRequest model);
+        public Task<bool> Authenticate(AuthenticationRequest model);
     }
 
     public class UserService : DataService, IUserService
@@ -39,9 +40,10 @@ namespace AnticariApp.Application.User
                 });
         }
 
-        public long Register(RegistrationRequest model)
+        public async Task<long> Register(RegistrationRequest model)
         {
-            var existingUser = _context.TBUsers.FirstOrDefault(u => u.Email == model.Email);
+            var existingUser = await _context.TBUsers
+                .FirstOrDefaultAsync(u => u.Email == model.Email);
             if (existingUser != null)
             {
                 return 0;
@@ -63,11 +65,11 @@ namespace AnticariApp.Application.User
             return newUser.IdUser;
         }
 
-        public bool Authenticate(AuthenticationRequest model)
+        public async Task<bool> Authenticate(AuthenticationRequest model)
         {
-            var user = _context.TBUsers
+            var user = await _context.TBUsers
                 .Where(u => u.Email == model.Email)
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
 
             return AuthenticationHelper.IsValidPassword(model.Password, user.Password);
         }
