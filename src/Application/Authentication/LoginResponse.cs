@@ -9,4 +9,6 @@ public class LoginResponse
     public UserRoles Role { get; set; }
 
     public string Token { get; set; }
+
+    public long TokenExpirationTime { get; set; }
 }

@@ -16,7 +16,7 @@ public class AuthController : ACController
 
     [AllowAnonymous]
     [HttpPost]
-    public async Task<ActionResult> Login(LoginRequest model)
+    public async Task<ActionResult<LoginResponse>> Login([FromBody]LoginRequest model)
     {
         var response = await _authService.Login(model);
         if (response == null)

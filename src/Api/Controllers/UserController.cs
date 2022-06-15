@@ -22,7 +22,7 @@ public class UserController : ACController
 
     [AllowAnonymous]
     [HttpPost]
-    public async Task<ActionResult> Register(RegistrationRequest model)
+    public async Task<ActionResult> Register([FromBody]RegistrationRequest model)
     {
         var userId = await _userService.Register(model);
         if (userId == 0)
