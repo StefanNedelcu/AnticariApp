@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import axiosInstance from "../config/Axios";
 
 const Login = () => {
 
-  return (
-    <div>
-      Logheaza-te ba
-    </div>
-  );
+    useEffect(() => {
+        axiosInstance.post('auth', {
+            email: "stefan.nedelcu@mailinator.com",
+            password: "123456"
+        });
+    }, []);
+
+    return (
+        <div>
+            Logheaza-te ba
+        </div>
+    );
 }
 
 export default Login;
