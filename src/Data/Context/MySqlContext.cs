@@ -6,16 +6,16 @@ using System.Reflection;
 
 namespace AnticariApp.Data.Context;
 
-public partial class ACContext : DbContext
+public partial class MySqlContext : DbContext
 {
-    public IConfiguration _configuration { get; }
+    public readonly IConfiguration _configuration;
 
-    public ACContext()
+    public MySqlContext()
     {
 
     }
 
-    public ACContext(DbContextOptions<ACContext> options, IConfiguration configuration)
+    public MySqlContext(DbContextOptions<MySqlContext> options, IConfiguration configuration)
         : base(options)
     {
         _configuration = configuration;

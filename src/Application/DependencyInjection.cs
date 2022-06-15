@@ -18,7 +18,7 @@ public static class DependencyInjection
 
     public static IServiceCollection AddACContext(this IServiceCollection services)
     {
-        services.AddDbContext<ACContext>();
+        services.AddDbContext<MySqlContext>();
 
         return services;
     }

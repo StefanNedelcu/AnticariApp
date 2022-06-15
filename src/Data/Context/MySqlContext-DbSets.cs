@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AnticariApp.Data.Context;
 
-public partial class ACContext
+public partial class MySqlContext
 {
     public virtual DbSet<TBAuthor> TBAuthors { get; set; }
     public virtual DbSet<TBBook> TBBooks { get; set; }

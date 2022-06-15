@@ -1,4 +1,5 @@
-﻿using AnticariApp.Application.Common;
+﻿using AnticariApp.Application.Authentication;
+using AnticariApp.Application.Common;
 using AnticariApp.Data.Context;
 using AnticariApp.Data.Entities;
 using AnticariApp.Utils.Enums;
@@ -14,15 +15,13 @@ namespace AnticariApp.Application.User
         public IEnumerable<User> Index();
 
         public Task<long> Register(RegistrationRequest model);
-
-        public Task<bool> Authenticate(AuthenticationRequest model);
     }
 
     public class UserService : DataService, IUserService
     {
-        private readonly ACContext _context;
+        private readonly MySqlContext _context;
 
-        public UserService(ACContext context)
+        public UserService(MySqlContext context)
         {
             _context = context;
         }
@@ -64,15 +63,6 @@ namespace AnticariApp.Application.User
             _context.SaveChanges();
 
             return newUser.IdUser;
-        }
-
-        public async Task<bool> Authenticate(AuthenticationRequest model)
-        {
-            var user = await _context.TBUsers
-                .Where(u => u.Email == model.Email)
-                .FirstOrDefaultAsync();
-
-            return AuthenticationHelper.IsValidPassword(model.Password, user.Password);
         }
     }
 }

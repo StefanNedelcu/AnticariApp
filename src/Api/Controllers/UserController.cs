@@ -1,4 +1,5 @@
-﻿using AnticariApp.Application.User;
+﻿using AnticariApp.Application.Authentication;
+using AnticariApp.Application.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,18 +31,5 @@ public class UserController : ACController
         }
 
         return Ok(new { message = "Cont înregistrat cu succes." });
-    }
-
-    [AllowAnonymous]
-    [HttpPost("login")]
-    public async Task<ActionResult> Login(AuthenticationRequest model)
-    {
-        var correctCredentials = await _userService.Authenticate(model);
-        if (!correctCredentials)
-        {
-            return BadRequest(new { message = "Credențiale greșite!" });
-        }
-
-        return Ok(new { message = "Logat cu succes." });
     }
 }
