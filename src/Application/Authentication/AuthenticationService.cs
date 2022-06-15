@@ -48,7 +48,7 @@ namespace AnticariApp.Application.Authentication
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim(ClaimTypes.Name, userId.ToString())
+                    new Claim(ClaimTypes.NameIdentifier, userId.ToString())
                 }),
                 Expires = expirationTime,
                 SigningCredentials = new SigningCredentials(
