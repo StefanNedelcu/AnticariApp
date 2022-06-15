@@ -1,6 +1,5 @@
-﻿using AnticariApp.Utils.Configuration;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System.Reflection;
 
 #nullable disable
@@ -9,24 +8,24 @@ namespace AnticariApp.Data.Context;
 
 public partial class ACContext : DbContext
 {
-    private readonly ConnectionStrings _connectionSettings;
+    public IConfiguration _configuration { get; }
 
     public ACContext()
     {
 
     }
 
-    public ACContext(DbContextOptions<ACContext> options, IOptions<ConnectionStrings> connectionStrings)
+    public ACContext(DbContextOptions<ACContext> options, IConfiguration configuration)
         : base(options)
     {
-        _connectionSettings = connectionStrings.Value;
+        _configuration = configuration;
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseMySQL(_connectionSettings.DefaultConnection);
+            optionsBuilder.UseMySQL(_configuration.GetConnectionString("MySQL"));
         }
     }
 

@@ -2,6 +2,7 @@
 using AnticariApp.Data.Context;
 using AnticariApp.Data.Entities;
 using AnticariApp.Utils.Enums;
+using AnticariApp.Utils.Exceptions;
 using AnticariApp.Utils.Extensions;
 using AnticariApp.Utils.Helpers;
 using Microsoft.EntityFrameworkCore;

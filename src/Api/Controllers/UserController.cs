@@ -1,4 +1,5 @@
 ﻿using AnticariApp.Application.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AnticariApp.API.Controllers;
@@ -18,27 +19,29 @@ public class UserController : ACController
         return _userService.Index();
     }
 
+    [AllowAnonymous]
     [HttpPost]
     public async Task<ActionResult> Register(RegistrationRequest model)
     {
         var userId = await _userService.Register(model);
         if (userId == 0)
         {
-            return BadRequest(new { message = "Your email address is already in use!" });
+            return BadRequest($"Adresa de email a fost deja folosită");
         }
 
-        return Ok(new { message = "Account registered successfully." });
+        return Ok(new { message = "Cont înregistrat cu succes." });
     }
 
+    [AllowAnonymous]
     [HttpPost("login")]
     public async Task<ActionResult> Login(AuthenticationRequest model)
     {
         var correctCredentials = await _userService.Authenticate(model);
         if (!correctCredentials)
         {
-            return BadRequest(new { message = "Wrong credentials!" });
+            return BadRequest(new { message = "Credențiale greșite!" });
         }
 
-        return Ok(new { message = "Logged in." });
+        return Ok(new { message = "Logat cu succes." });
     }
 }
