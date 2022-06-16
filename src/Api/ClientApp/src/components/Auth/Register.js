@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import axiosInstance from "../config/Axios";
+import axiosInstance from "../../config/Axios";
 
 const Register = () => {
 
     return (
         <div>
-            Logheaza-te ba
+            Inregistreaza-te ba
         </div>
     );
 }
