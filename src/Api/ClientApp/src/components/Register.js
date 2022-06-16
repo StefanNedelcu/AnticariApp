@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import axiosInstance from "../config/Axios";
 
-const Login = () => {
+const Register = () => {
 
     return (
         <div>
@@ -10,4 +10,4 @@ const Login = () => {
     );
 }
 
-export default Login;
+export default Register;

@@ -1,7 +1,6 @@
 using AnticariApp.Application;
-using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.OpenApi.Models;
-using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +8,16 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDataServices();
 builder.Services.AddACContext();
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
+
+
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+        options.SlidingExpiration = true;
+        options.AccessDeniedPath = "/403";
+    });
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -32,19 +41,6 @@ builder.Services.AddSwaggerGen(c =>
             new List<string>()
         }
     });
-});
-
-builder.Services.AddAuthentication().AddCookie().AddJwtBearer(cfg =>
-{
-    cfg.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuer = false,
-        ValidateAudience = false,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtToken:Key"]))
-    };
-    cfg.SaveToken = true;
 });
 
 var app = builder.Build();

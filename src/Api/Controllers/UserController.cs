@@ -27,7 +27,7 @@ public class UserController : ACController
         var userId = await _userService.Register(model);
         if (userId == 0)
         {
-            return BadRequest($"Adresa de email a fost deja folosită");
+            return BadRequest(new { message = "Adresa de email a fost deja folosită" });
         }
 
         return Ok(new { message = "Cont înregistrat cu succes." });
