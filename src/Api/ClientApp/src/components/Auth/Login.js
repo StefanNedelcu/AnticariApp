@@ -25,7 +25,7 @@ const Login = () => {
         setError("");
         setLoading(true);
 
-        axiosInstance.post('auth', { 
+        await axiosInstance.post('auth', { 
                 email: emailRef.current.value, 
                 password: passwordRef.current.value 
             })
@@ -51,8 +51,8 @@ const Login = () => {
 
             <Col xs={9}>
                 <Container className='mt-4'>
-                    <h2 className='px-5 py-5'>Loghează-te</h2>
-                    <h5 className='px-5 py-3'>Te rugăm să îți introduci datele de conectare.</h5>
+                    <h2 className='py-5'>Loghează-te</h2>
+                    <h5 className='py-3'>Te rugăm să îți introduci datele de conectare.</h5>
                     <hr/>
 
                     {error && <Alert variant="danger">{error}</Alert>}
