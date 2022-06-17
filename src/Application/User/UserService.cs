@@ -56,10 +56,28 @@ namespace AnticariApp.Application.User
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 UserRole = UserRoles.Standard.AsInt(),
-                CreatedAt = DateTime.UtcNow,
+                CreatedAt = DateTime.Now,
             };
 
             _context.TBUsers.Add(newUser);
+            _context.TBUserAddresses.Add(new TBUserAddress
+            {
+                User = newUser,
+                City = "-",
+                Country = "-",
+                StreetName = "-",
+                StreetNumber = 0,
+                ZipCode = "-",
+            });
+            _context.TBUserStatistics.Add(new TBUserStatistic
+            {
+                User = newUser,
+                ReadBooks = 0,
+                SoldItems = 0,
+                UserAvgRating = 0,
+                UpdatedAt = DateTime.Now,
+            });
+
             _context.SaveChanges();
 
             return newUser.IdUser;

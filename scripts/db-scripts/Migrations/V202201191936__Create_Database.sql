@@ -21,22 +21,12 @@ CREATE TABLE `TBUserStatistics` (
 CREATE TABLE `TBUserAddresses` (
   `IdUserAddress` BIGINT NOT NULL AUTO_INCREMENT,
   `IdUser` BIGINT NOT NULL,
-  `IdCity` BIGINT NOT NULL,
+  `City` VARCHAR(45) NOT NULL,
+  `Country` VARCHAR(45) NOT NULL,
   `StreetName` VARCHAR(45) NOT NULL,
   `StreetNumber` INT NULL,
   `ZipCode` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`IdUserAddress`));
-
-CREATE TABLE `TBCities` (
-  `IdCity` BIGINT NOT NULL AUTO_INCREMENT,
-  `IdCountry` BIGINT NOT NULL,
-  `CityName` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`IdCity`));
-
-CREATE TABLE `TBCountries` (
-  `IdCountry` BIGINT NOT NULL AUTO_INCREMENT,
-  `CountryName` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`IdCountry`));
 
 CREATE TABLE `TBUserAuthorPreferences` (
   `IdAuthorPreference` BIGINT NOT NULL AUTO_INCREMENT,
@@ -126,16 +116,6 @@ ADD CONSTRAINT `Book_to_Author_FK`
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
 
-ALTER TABLE `TBCities` 
-ADD INDEX `City_to_Country_FK_idx` (`IdCountry` ASC) VISIBLE;
-;
-ALTER TABLE `TBCities` 
-ADD CONSTRAINT `City_to_Country_FK`
-  FOREIGN KEY (`IdCountry`)
-  REFERENCES `TBCountries` (`IdCountry`)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION;
-
 ALTER TABLE `TBExchangeOffers` 
 ADD INDEX `ExchangeOffer_to_Posting_FK_idx` (`IdPosting` ASC) VISIBLE,
 ADD INDEX `ExchangeOffer_to_Author_idx` (`IdAuthor` ASC) VISIBLE,
@@ -191,18 +171,12 @@ ADD CONSTRAINT `PostingImage_to_Posting_FK`
   ON UPDATE NO ACTION;
 
 ALTER TABLE `TBUserAddresses` 
-ADD INDEX `Address_to_User_FK_idx` (`IdUser` ASC) VISIBLE,
-ADD INDEX `Address_to_City_FK_idx` (`IdCity` ASC) VISIBLE;
+ADD INDEX `Address_to_User_FK_idx` (`IdUser` ASC) VISIBLE;
 ;
 ALTER TABLE `TBUserAddresses` 
 ADD CONSTRAINT `Address_to_User_FK`
   FOREIGN KEY (`IdUser`)
   REFERENCES `TBUsers` (`IdUser`)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION,
-ADD CONSTRAINT `Address_to_City_FK`
-  FOREIGN KEY (`IdCity`)
-  REFERENCES `TBCities` (`IdCity`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
 

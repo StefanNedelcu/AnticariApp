@@ -13,23 +13,23 @@ public class TBUserAddressesConfiguration : IEntityTypeConfiguration<TBUserAddre
 
         entity.ToTable("TBUserAddresses");
 
-        entity.HasIndex(e => e.IdCity, "Address_to_City_FK_idx");
-
         entity.HasIndex(e => e.IdUser, "Address_to_User_FK_idx");
 
         entity.Property(e => e.StreetName)
             .IsRequired()
             .HasMaxLength(45);
 
-        entity.Property(e => e.ZipCode)
+        entity.Property(e => e.City)
             .IsRequired()
             .HasMaxLength(45);
 
-        entity.HasOne(d => d.City)
-            .WithMany(p => p.TBUserAddresses)
-            .HasForeignKey(d => d.IdCity)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("Address_to_City_FK");
+        entity.Property(e => e.Country)
+            .IsRequired()
+            .HasMaxLength(45);
+
+        entity.Property(e => e.ZipCode)
+            .IsRequired()
+            .HasMaxLength(45);
 
         entity.HasOne(d => d.User)
             .WithMany(p => p.TBUserAddresses)

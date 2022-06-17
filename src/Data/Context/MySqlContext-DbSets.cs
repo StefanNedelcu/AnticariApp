@@ -9,8 +9,6 @@ public partial class MySqlContext
     public virtual DbSet<TBBook> TBBooks { get; set; }
     public virtual DbSet<TBBookCategory> TBBookCategories { get; set; }
     public virtual DbSet<TBCategory> TBCategories { get; set; }
-    public virtual DbSet<TBCity> TBCities { get; set; }
-    public virtual DbSet<TBCountry> TBCountries { get; set; }
     public virtual DbSet<TBExchangeOffer> TBExchangeOffers { get; set; }
     public virtual DbSet<TBPosting> TBPostings { get; set; }
     public virtual DbSet<TBPostingImage> TBPostingImages { get; set; }
