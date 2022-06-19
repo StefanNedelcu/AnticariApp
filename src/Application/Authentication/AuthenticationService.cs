@@ -4,10 +4,6 @@ using AnticariApp.Utils.Enums;
 using AnticariApp.Utils.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 
 namespace AnticariApp.Application.Authentication
 {
@@ -43,6 +39,6 @@ namespace AnticariApp.Application.Authentication
                 UserId = user.IdUser,
                 Role = (UserRoles)user.UserRole,
             };
-        }        
+        }
     }
 }

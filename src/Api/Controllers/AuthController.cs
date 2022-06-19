@@ -1,5 +1,4 @@
 ﻿using AnticariApp.Application.Authentication;
-using AnticariApp.Application.User;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -19,7 +18,7 @@ public class AuthController : ACController
 
     [AllowAnonymous]
     [HttpPost]
-    public async Task<ActionResult<LoginResponse>> Login([FromBody]LoginRequest model)
+    public async Task<ActionResult<LoginResponse>> Login([FromBody] LoginRequest model)
     {
         var response = await _authService.Login(model);
         if (response == null)

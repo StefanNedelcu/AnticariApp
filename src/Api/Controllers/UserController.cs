@@ -1,5 +1,4 @@
-﻿using AnticariApp.Application.Authentication;
-using AnticariApp.Application.User;
+﻿using AnticariApp.Application.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,7 +21,7 @@ public class UserController : ACController
 
     [AllowAnonymous]
     [HttpPost]
-    public async Task<ActionResult> Register([FromBody]RegistrationRequest model)
+    public async Task<ActionResult> Register([FromBody] RegistrationRequest model)
     {
         var userId = await _userService.Register(model);
         if (userId == 0)
