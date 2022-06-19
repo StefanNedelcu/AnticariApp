@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axiosInstance from "../../config/Axios";
 import { useHistory } from "react-router-dom";
-import { useAuth } from '../../config/AuthContext';
 import { Button } from 'react-bootstrap';
+import NavMenu from '../NavMenu/NavMenu';
 
 const Home = () => {
-  const { setCurrentUser } = useAuth();
   const history = useHistory();
   const [users, setUsers] = useState([]);
 
@@ -23,12 +22,14 @@ const Home = () => {
   async function logout() {
     await axiosInstance.get('auth')
       .then(() => { 
-        setCurrentUser(null);
+        localStorage.setItem('currentUser', null);
         history.push('/login'); 
       });
   }
 
   return (
+    <>
+    <NavMenu/>
     <div>
       <h1>Hello, world!</h1>
       <p>Welcome to your new single-page application, built with:</p>
@@ -46,6 +47,7 @@ const Home = () => {
       <p>The <code>ClientApp</code> subdirectory is a standard React application based on the <code>create-react-app</code> template. If you open a command prompt in that directory, you can run <code>npm</code> commands such as <code>npm test</code> or <code>npm install</code>.</p>
       <Button onClick={logout}>Logout</Button>
     </div>
+    </>
   );
 }
 

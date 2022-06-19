@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import { Link, useHistory } from "react-router-dom";
-import { useAuth } from '../../config/AuthContext';
 import { Container, Row, Col, Alert, Form, Button } from 'react-bootstrap';
 import axiosInstance from "../../config/Axios";
 
@@ -9,7 +8,6 @@ import './Auth.css';
 const Login = () => {
     const emailRef = useRef();
     const passwordRef = useRef();
-    const { setCurrentUser } = useAuth();
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const history = useHistory();
@@ -30,7 +28,7 @@ const Login = () => {
                 password: passwordRef.current.value 
             })
             .then(({ data }) => {
-                setCurrentUser(data);
+                localStorage.setItem('currentUser', data);
                 history.push('/');
             })
             .catch((error) => { 
