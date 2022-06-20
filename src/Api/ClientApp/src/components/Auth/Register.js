@@ -3,8 +3,6 @@ import { Link, useHistory } from "react-router-dom";
 import { Container, Row, Col, Alert, Form, Button } from 'react-bootstrap';
 import axiosInstance from "../../config/Axios";
 
-import './Auth.css';
-
 const Register = () => {
     const firstNameRef = useRef();
     const lastNameRef = useRef();
@@ -35,6 +33,7 @@ const Register = () => {
                 email: emailRef.current.value, 
                 firstName: firstNameRef.current.value,
                 lastName: lastNameRef.current.value,
+                phoneNumber: phoneNumberRef.current.value,
                 password: passwordRef.current.value 
             })
             .then(() => {
@@ -49,7 +48,7 @@ const Register = () => {
     return (
         <Row className='full-height'>
             <Col xs={3} className='side-panel'>
-                <div style={{height: '70%'}} className='d-flex flex-column justify-content-around'>
+                <div style={{height: '70%', textAlign: 'center'}} className='d-flex flex-column justify-content-around'>
                     <h1>AnticariApp</h1>
 
                     <h3>Cumpără sau postează propriile anunțuri de vânzare sau schimb de cărți chiar acum!</h3>
@@ -66,17 +65,17 @@ const Register = () => {
 
                     <Form onSubmit={handleRegister}>
                         <Container>
-                            <Row className='mt-2'>
-                                <Col xs={12} md={6}>
-                                    <Form.Group id="lastName">
-                                        <Form.Label>Nume</Form.Label>
-                                        <Form.Control type="text" ref={lastNameRef} required />
-                                    </Form.Group>
-                                </Col>
+                            <Row className='mt-2'>                                
                                 <Col xs={12} md={6}>
                                     <Form.Group id="firstName">
                                         <Form.Label>Prenume</Form.Label>
                                         <Form.Control type="text" ref={firstNameRef} required />
+                                    </Form.Group>
+                                </Col>
+                                <Col xs={12} md={6}>
+                                    <Form.Group id="lastName">
+                                        <Form.Label>Nume</Form.Label>
+                                        <Form.Control type="text" ref={lastNameRef} required />
                                     </Form.Group>
                                 </Col>
                             </Row>

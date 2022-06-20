@@ -4,7 +4,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 const NavMenu = () => {
 
     return (
-        <Navbar bg="dark" variant="dark" expand="lg" sticky="top" className='px-5'>
+        <Navbar bg="dark" variant="dark" expand="lg" sticky="top" className='px-5 height-5'>
             <Navbar.Brand href="/">AnticariApp</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">

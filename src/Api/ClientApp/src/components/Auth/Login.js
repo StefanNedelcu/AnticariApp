@@ -3,8 +3,6 @@ import { Link, useHistory } from "react-router-dom";
 import { Container, Row, Col, Alert, Form, Button } from 'react-bootstrap';
 import axiosInstance from "../../config/Axios";
 
-import './Auth.css';
-
 const Login = () => {
     const emailRef = useRef();
     const passwordRef = useRef();
@@ -28,7 +26,7 @@ const Login = () => {
                 password: passwordRef.current.value 
             })
             .then(({ data }) => {
-                localStorage.setItem('currentUser', data);
+                localStorage.setItem('currentUser', JSON.stringify(data));
                 history.push('/');
             })
             .catch((error) => { 
@@ -40,7 +38,7 @@ const Login = () => {
     return (
         <Row className='full-height'>
             <Col xs={3} className='side-panel'>
-                <div style={{height: '70%'}} className='d-flex flex-column justify-content-around'>
+                <div style={{height: '70%', textAlign: 'center'}} className='d-flex flex-column justify-content-around'>
                     <h1>AnticariApp</h1>
 
                     <h3>Cumpără sau postează propriile anunțuri de vânzare sau schimb de cărți chiar acum!</h3>

@@ -4,6 +4,7 @@ CREATE TABLE `TBUsers` (
   `Password` VARCHAR(255) NOT NULL,
   `FirstName` VARCHAR(45) NOT NULL,
   `LastName` VARCHAR(45) NOT NULL,
+  `PhoneNumber` VARCHAR(45) NOT NULL,
   `UserRole` INT NOT NULL,
   `CreatedAt` DATETIME NOT NULL,
   PRIMARY KEY (`IdUser`),

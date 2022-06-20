@@ -19,6 +19,7 @@ public partial class TBUser
     public string Password { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
+    public string PhoneNumber { get; set; }
     public int UserRole { get; set; }
     public DateTime CreatedAt { get; set; }
 

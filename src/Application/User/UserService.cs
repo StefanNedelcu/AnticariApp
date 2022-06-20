@@ -10,7 +10,7 @@ namespace AnticariApp.Application.User
 {
     public interface IUserService
     {
-        public IEnumerable<User> Index();
+        public Task<User> GetUser(long userId);
 
         public Task<long> Register(RegistrationRequest model);
     }
@@ -24,18 +24,28 @@ namespace AnticariApp.Application.User
             _context = context;
         }
 
-        public IEnumerable<User> Index()
+        public async Task<User> GetUser(long userId)
         {
-            return _context.TBUsers
-                .Select(u => new User
-                {
-                    IdUser = u.IdUser,
-                    FirstName = u.FirstName,
-                    LastName = u.LastName,
-                    Email = u.Email,
-                    UserRole = u.UserRole,
-                    CreatedAt = u.CreatedAt,
-                });
+            var user = await _context.TBUsers
+               .Where(u => u.IdUser == userId)
+               .Include(u => u.TBUserAddresses)
+               .Include(u => u.TBUserStatistics)
+               .FirstOrDefaultAsync();
+
+            var address = GetUserAddress(user);
+            var statistics = GetUserStatistics(user);
+
+            return new User
+            {
+                IdUser = user.IdUser,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                PhoneNumber = user.PhoneNumber,
+                Address = address.ToString(),
+                Statistics = statistics,
+                Email = user.Email,
+                CreatedAt = user.CreatedAt
+            };
         }
 
         public async Task<long> Register(RegistrationRequest model)
@@ -53,6 +63,7 @@ namespace AnticariApp.Application.User
                 Password = AuthenticationHelper.HashPassword(model.Password),
                 FirstName = model.FirstName,
                 LastName = model.LastName,
+                PhoneNumber = model.PhoneNumber,
                 UserRole = UserRoles.Standard.AsInt(),
                 CreatedAt = DateTime.Now,
             };
@@ -79,6 +90,40 @@ namespace AnticariApp.Application.User
             _context.SaveChanges();
 
             return newUser.IdUser;
+        }
+
+        private static Address GetUserAddress(TBUser user)
+        {
+            if (user == null)
+            {
+                return null;
+            }
+            var address = user.TBUserAddresses.First();
+
+            return new Address
+            {
+                City = address.City,
+                Country = address.Country,
+                StreetName = address.StreetName,
+                StreetNumber = address.StreetNumber,
+                ZipCode = address.ZipCode,
+            };
+        }
+
+        public static Statistics GetUserStatistics(TBUser user)
+        {
+            if (user == null)
+            {
+                return null;
+            }
+            var statistics = user.TBUserStatistics.First();
+
+            return new Statistics
+            {
+                AvgRating = statistics.UserAvgRating,
+                ReadBooks = statistics.ReadBooks,
+                SoldItems = statistics.SoldItems,
+            };
         }
     }
 }

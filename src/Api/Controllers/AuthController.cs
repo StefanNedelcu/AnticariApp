@@ -42,6 +42,7 @@ public class AuthController : ACController
         return Ok(response);
     }
 
+    [AllowAnonymous]
     [HttpGet]
     public async Task<ActionResult> Logout()
     {

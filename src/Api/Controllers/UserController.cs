@@ -13,10 +13,24 @@ public class UserController : ACController
         _userService = userService;
     }
 
-    [HttpGet]
-    public IEnumerable<User> Index()
+    [HttpGet("{userId}")]
+    public async Task<ActionResult<User>> GetUser(long userId)
     {
-        return _userService.Index();
+        var user = await _userService.GetUser(userId);
+
+        return Ok(user);
+    }
+
+    [HttpGet("{userId}/details")]
+    public Task<ActionResult<User>> GetUserDetails(long userId)
+    {
+        throw new NotImplementedException();
+    }
+
+    [HttpPut("{userId}/details")]
+    public Task<ActionResult> UpdateUserDetails(long userId)
+    {
+        throw new NotImplementedException();
     }
 
     [AllowAnonymous]
