@@ -2,13 +2,18 @@ import React, { useRef, useState } from 'react';
 import { Link, useHistory } from "react-router-dom";
 import { Container, Row, Col, Alert, Form, Button } from 'react-bootstrap';
 import axiosInstance from "../../config/Axios";
+import { useEffect } from 'react';
 
 const Login = () => {
     const emailRef = useRef();
     const passwordRef = useRef();
     const [error, setError] = useState("");
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const history = useHistory();
+
+    useEffect(() => {
+        setLoading(false);
+    }, [])
    
     function handleLogIn(e) {
         e.preventDefault()
@@ -28,11 +33,12 @@ const Login = () => {
             .then(({ data }) => {
                 localStorage.setItem('currentUser', JSON.stringify(data));
                 history.push('/');
+                setLoading(false);
             })
             .catch((error) => { 
-                setError(error.response.data.message)
+                setError(error.response.data.message);
+                setLoading(false);
             })
-            .finally(() => setLoading(false));
     }
 
     return (
@@ -42,7 +48,7 @@ const Login = () => {
                     <h1>AnticariApp</h1>
 
                     <h3>Cumpără sau postează propriile anunțuri de vânzare sau schimb de cărți chiar acum!</h3>
-                </div>                
+                </div>
             </Col>
 
             <Col xs={9}>

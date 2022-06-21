@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Link, useHistory } from "react-router-dom";
 import { Container, Row, Col, Alert, Form, Button } from 'react-bootstrap';
 import axiosInstance from "../../config/Axios";
@@ -11,8 +11,12 @@ const Register = () => {
     const passwordRef = useRef();
     const confirmPasswordRef = useRef();
     const [error, setError] = useState("");
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const history = useHistory();
+
+    useEffect(() => {
+      setLoading(false);
+    }, []);    
    
     function handleRegister(e) {
         e.preventDefault()
@@ -37,12 +41,13 @@ const Register = () => {
                 password: passwordRef.current.value 
             })
             .then(() => {
+                setLoading(false);
                 history.push('/login');
             })
             .catch((error) => { 
-                setError(error.response.data.message)
-            })
-            .finally(() => setLoading(false));
+                setError(error.response.data.message);
+                setLoading(false);
+            });
     }
 
     return (

@@ -21,16 +21,20 @@ public class UserController : ACController
         return Ok(user);
     }
 
-    [HttpGet("{userId}/details")]
-    public Task<ActionResult<User>> GetUserDetails(long userId)
+    [HttpGet("{userId}/settings")]
+    public async Task<ActionResult<UserSettings>> GetUserSettings(long userId)
     {
-        throw new NotImplementedException();
+        var userSettings = await _userService.GetUserSettings(userId);
+
+        return Ok(userSettings);
     }
 
-    [HttpPut("{userId}/details")]
-    public Task<ActionResult> UpdateUserDetails(long userId)
+    [HttpPut("{userId}/settings")]
+    public async Task<ActionResult> UpdateUserDetails([FromBody]UpdateUserSettingsRequest req)
     {
-        throw new NotImplementedException();
+        await _userService.UpdateUserSettings(req);
+
+        return Ok();
     }
 
     [AllowAnonymous]

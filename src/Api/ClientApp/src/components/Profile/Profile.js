@@ -1,26 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axiosInstance from "../../config/Axios";
-import { useHistory } from "react-router-dom";
 import Image from 'react-bootstrap/Image';
-import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAward, faTrophy } from '@fortawesome/free-solid-svg-icons'
 
 const Profile = (props) => {
-    const history = useHistory();
     const [user, setUser] = useState(null);    
 
     useEffect(() => {
         getUser(props.userId);
     }, [])
-
-    async function logout() {
-        await axiosInstance.get('auth')
-            .then(() => { 
-                localStorage.setItem('currentUser', null);
-            })
-            .finally(() => history.push('/login'));
-    }
 
     async function getUser(userId) {
         await axiosInstance.get(`user/${userId}`)
@@ -39,7 +28,7 @@ const Profile = (props) => {
             <FontAwesomeIcon icon={faTrophy} className='profile-badge text-warning' />}
         </div>
         <div className='text-center'>
-            <h1 className='mt-5'>Meniu</h1>
+            <h1 className='mt-5'>Profil</h1>
             <Image
                 src='profile-placeholder.png'
                 roundedCircle
@@ -47,19 +36,10 @@ const Profile = (props) => {
             />
             <h3>{user.firstName}</h3>
             <h3>{user.lastName}</h3>
-            <div><strong>Email:</strong> {user.email}</div>
-            <div><strong>Telefon:</strong> {user.phoneNumber}</div>
-            <div><strong>Adresa:</strong> {user.address}</div>
-            <div><strong>Rating mediu:</strong> {user.statistics.avgRating ? user.statistics.avgRating : "N/A"} </div>
-            <div className='mt-4'>
-                <Button variant="light" size='sm' className='mx-2'>
-                    Editați
-                </Button>
-
-                <Button variant="light" size='sm' onClick={logout}>
-                    Logout
-                </Button>
-            </div>
+            <div><strong>Email:</strong> <em>{user.email}</em></div>
+            <div><strong>Telefon:</strong> <em>{user.phoneNumber}</em></div>
+            <div><strong>Adresa:</strong> <em>{user.address}</em></div>
+            <div><strong>Rating mediu:</strong> <em>{user.statistics.avgRating ? user.statistics.avgRating : "N/A"}</em></div>
         </div>
         </>
     )
