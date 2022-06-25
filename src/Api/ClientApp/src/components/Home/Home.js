@@ -24,7 +24,7 @@ const Home = () => {
   }
 
   function goToEditProfile() {
-    history.push(`profile/${currentUser.userId}`);
+    history.push(`settings`);
   }
 
   return (

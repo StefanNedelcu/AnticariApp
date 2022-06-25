@@ -16,12 +16,9 @@ namespace AnticariApp.Application.Authentication
     {
         private readonly MySqlContext _context;
 
-        private readonly IConfiguration _configuration;
-
-        public AuthService(MySqlContext context, IConfiguration configuration)
+        public AuthService(MySqlContext context)
         {
             _context = context;
-            _configuration = configuration;
         }
 
         public async Task<LoginResponse> Login(LoginRequest model)

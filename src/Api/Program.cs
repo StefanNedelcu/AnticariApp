@@ -9,8 +9,6 @@ builder.Services.AddDataServices();
 builder.Services.AddACContext();
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
-
-
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
