@@ -1,6 +1,6 @@
 ﻿namespace AnticariApp.Utils.Enums;
 
-public enum UserRoles
+public enum UserRole
 {
     Standard = 0,
     Administrator = 1,

@@ -34,7 +34,7 @@ namespace AnticariApp.Application.Authentication
             return new LoginResponse
             {
                 UserId = user.IdUser,
-                Role = (UserRoles)user.UserRole,
+                Role = (UserRole)user.UserRole,
             };
         }
     }

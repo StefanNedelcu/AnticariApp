@@ -6,5 +6,5 @@ public class LoginResponse
 {
     public long UserId { get; set; }
 
-    public UserRoles Role { get; set; }
+    public UserRole Role { get; set; }
 }

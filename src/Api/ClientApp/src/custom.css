@@ -31,3 +31,13 @@
   height: 50px;
   width: auto;
 }
+
+.book-card-img {
+  width: 182px;
+  height: 182px;
+}
+
+.book-widget-img {
+  width: 250px;
+  height: 300px;
+}

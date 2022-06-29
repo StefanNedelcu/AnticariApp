@@ -167,7 +167,7 @@ public class UserService : DataService, IUserService
             FirstName = model.FirstName,
             LastName = model.LastName,
             PhoneNumber = model.PhoneNumber,
-            UserRole = UserRoles.Standard.AsInt(),
+            UserRole = UserRole.Standard.AsInt(),
             CreatedAt = DateTime.Now,
         };
 
