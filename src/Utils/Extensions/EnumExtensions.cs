@@ -20,4 +20,14 @@ public static class EnumExtensions
         var fieldInfo = GetFieldInfo(value);
         return (int)fieldInfo.GetValue(value);
     }
+
+    public static T AsEnum<T>(this int value) where T : struct
+    {
+        if (!(typeof(T).IsEnum))
+        {
+            throw new ArgumentException("T must be an enumerated type");
+        }
+
+        return (T)Enum.Parse(typeof(T), value.ToString());
+    }
 }

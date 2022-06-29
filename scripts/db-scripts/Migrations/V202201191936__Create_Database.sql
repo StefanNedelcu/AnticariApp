@@ -227,6 +227,7 @@ CREATE TABLE `TBUserWishlistItems` (
   `IdWishlistItem` BIGINT NOT NULL AUTO_INCREMENT,
   `IdUser` BIGINT NOT NULL,
   `IdBook` BIGINT NOT NULL,
+  `ItemStatus` INT NOT NULL,
   PRIMARY KEY (`IdWishlistItem`),
   INDEX `WishlistItem_to_User_FK_idx` (`IdUser` ASC) VISIBLE,
   INDEX `WishlistItem_to_Book_FK_idx` (`IdBook` ASC) VISIBLE,

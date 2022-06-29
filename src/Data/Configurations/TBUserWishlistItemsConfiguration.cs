@@ -13,6 +13,9 @@ public class TBUserWishlistItemsConfiguration : IEntityTypeConfiguration<TBUserW
 
         entity.ToTable("TBUserWishlistItems");
 
+        entity.Property(e => e.ItemStatus)
+            .IsRequired();
+
         entity.HasIndex(e => e.IdBook, "WishlistItem_to_Book_FK_idx");
 
         entity.HasIndex(e => e.IdUser, "WishlistItem_to_User_FK_idx");

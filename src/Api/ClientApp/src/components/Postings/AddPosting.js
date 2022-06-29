@@ -26,7 +26,7 @@ const AddPosting = () => {
         posting.userId = crtUser.userId;
 
         setLoading(false);
-    }, [])
+    }, [posting])
 
     const handleChange = (e) => {
         setPosting({ ...posting, [e.target.name]: e.target.value });
