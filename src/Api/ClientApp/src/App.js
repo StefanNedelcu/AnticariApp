@@ -7,6 +7,7 @@ import Register from './components/Auth/Register';
 import EditProfile from './components/Profile/EditProfile';
 import AddPosting from './components/Postings/AddPosting';
 import Wishlist from './components/Wishlist/Wishlist';
+import Search from './components/Search/Search';
 
 import './custom.css'
 
@@ -20,6 +21,7 @@ const App = () => {
         <PrivateRoute exact path='/settings' component={EditProfile} />
         <PrivateRoute exact path='/add-posting' component={AddPosting} />
         <PrivateRoute exact path='/wishlist' component={Wishlist} />
+        <PrivateRoute exact path='/search' component={Search} />
       </Switch>
     </Router>
   );

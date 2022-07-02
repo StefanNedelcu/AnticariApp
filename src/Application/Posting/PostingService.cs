@@ -15,6 +15,8 @@ public interface IPostingService
     public Task AddPosting(AddPostingRequest request);
 
     public Task MarkPostingClosed(long postingId, AddReviewRequest request);
+
+    public Task<List<Posting>> Search(SearchFilter filter);
 }
 
 public class PostingService : DataService, IPostingService
@@ -132,6 +134,23 @@ public class PostingService : DataService, IPostingService
         ownerStatistics.SoldItems++;
 
         await _context.SaveChangesAsync();
+    }
+
+    public async Task<List<Posting>> Search(SearchFilter filter)
+    {
+        return _context.TBPostings
+            .Where(p => p.PostingStatus == PostingStatus.Available.AsInt())
+            .OrderByDescending(p => p.CreatedAt)
+            .Include(p => p.Book)
+            .Include(p => p.Book.Author)
+            .Include(p => p.TBPostingImages)            
+            .ToList()
+            .Select(p => ToPosting(p))
+            .Where(p => filter.Query == string.Empty || 
+                p.Title.ToLower().Contains(filter.Query.ToLower()) ||
+                p.Author.ToLower().Contains(filter.Query.ToLower()) ||
+                p.Category.ToLower().Contains(filter.Query.ToLower()))
+            .ToList();
     }
 
     private bool IsRecommendation(Posting posting, long userId)

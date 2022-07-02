@@ -31,7 +31,6 @@ public class PostingController : ACController
     }
 
     [HttpPatch("{postingId}")]
-    [AllowAnonymous]
     public async Task<ActionResult> MarkPostingClosed(
         long postingId,
         [FromBody] AddReviewRequest request)
@@ -39,5 +38,13 @@ public class PostingController : ACController
         await _postingService.MarkPostingClosed(postingId, request);
 
         return Ok();
+    }
+
+    [HttpGet("search")]
+    public async Task<ActionResult<List<Posting>>> Search([FromQuery]SearchFilter filter)
+    {
+        var result = await _postingService.Search(filter);
+
+        return Ok(result);
     }
 }
