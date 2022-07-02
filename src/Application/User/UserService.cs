@@ -10,7 +10,7 @@ namespace AnticariApp.Application.User;
 
 public interface IUserService
 {
-    public Task<User> GetUser(long userId);
+    public User GetUser(long userId);
 
     public Task<UserSettings> GetUserSettings(long userId);
 
@@ -28,13 +28,13 @@ public class UserService : DataService, IUserService
         _context = context;
     }
 
-    public async Task<User> GetUser(long userId)
+    public User GetUser(long userId)
     {
-        var user = await _context.TBUsers
+        var user = _context.TBUsers
            .Where(u => u.IdUser == userId)
            .Include(u => u.TBUserAddresses)
            .Include(u => u.TBUserStatistics)
-           .FirstOrDefaultAsync();
+           .FirstOrDefault();
 
         var address = user.GetUserAddress();
         var statistics = user.GetUserStatistics();

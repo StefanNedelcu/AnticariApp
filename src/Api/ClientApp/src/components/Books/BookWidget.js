@@ -1,28 +1,90 @@
 import React, { useEffect, useState } from 'react';
 import axiosInstance from "../../config/Axios";
-import { Button } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import Image from 'react-bootstrap/Image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import Moment from 'moment';
+import StarRatings from 'react-star-ratings';
 
-const BookWidget = (props) => {
+const BookWidget = ({ posting }) => {
+    const [createdAt, setCreatedAt] = useState();
+    const [show, setShow] = useState(false);
+    const [rating, setRating] = useState(0);
+
+    useEffect(() => {
+        const date = new Date(posting.createdAt);
+        setCreatedAt(Moment(date).format('DD-MM-YYYY'))
+    }, [])
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const handleConfirm = () => {
+        axiosInstance.patch(`posting/${posting.postingId}`, { rating })
+            .then(() => {
+                console.log('success')
+            })
+            .finally(() => setShow(false));
+    }
+
     return (
+        <>
         <div className='text-center'>
-            <h1 className='mt-5'>Profil</h1>
             <Image
-                src='witcher.jpg'
+                src={posting.thumbnail}
                 className='my-3 book-widget-img'
+                rounded={25}
             />
-            <h3>The Witcher</h3>
+            <h3>{posting.title}</h3>
             <Button variant="light" style={{width: '100px'}} className='mb-4'><strong>30 lei</strong></Button>
-            <div><strong>Autor:</strong> <em>Andrzej Sapkowski</em></div>
-            <div><strong>Editura:</strong> <em>Nemira</em></div>
-            <div><strong>Postat de:</strong> <em>Stefan Nedelcu</em> <span>(5 <FontAwesomeIcon icon={faStar} className='text-warning'/>)</span></div>
-            <div><strong>Data:</strong> <em>25.06.2022</em></div>
-            <div><strong>Adresa:</strong> <em>Bucuresti, Mihai Bravu 139</em></div>
-            <div><strong>Descriere:</strong> <em>The Witcher is a series of six fantasy novels and 15 short stories written by Polish author Andrzej Sapkowski. The series revolves around the eponymous "witcher," Geralt of Rivia. In Sapkowski's works, "witchers" are beast hunters who develop supernatural abilities at a young age to battle wild beasts and monsters.</em></div>
-            <Button variant='primary' style={{width: '100%'}} className='mt-2'>Cumpărat</Button>
+            <div><strong>Autor:</strong> <em>{posting.author}</em></div>
+            <div><strong>Categorie:</strong> <em>{posting.category}</em></div>
+            <div>
+                <strong>Postat de: </strong> 
+                <em>{`${posting.owner.firstName} ${posting.owner.lastName}`} </em> 
+                <span>
+                    ({posting.owner.statistics.avgRating ?
+                    <>{posting.owner.statistics.avgRating} <FontAwesomeIcon icon={faStar} className='text-warning'/></> :
+                    <>rating: N/A</>})
+                </span>
+            </div>
+            <div><strong>Email: </strong><em>{posting.owner.email}</em></div>
+            <div><strong>Telefon: </strong><em>{posting.owner.phoneNumber}</em></div>
+            <div><strong>Adresa: </strong><em>{posting.owner.address}</em></div>
+            <div><strong>Postat la: </strong><em>{createdAt}</em></div>
+            <div><strong>Descriere: </strong><em>{posting.description}</em></div>
+            <Button variant='primary' style={{width: '90%'}} className='mt-2'
+                onClick={handleShow}
+            >
+                Cumpărat
+            </Button>
         </div>
+        
+        <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+                <Modal.Title>Confirmați tranzacția</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className='text-center'>
+                Vă rugăm să acordați un rating vânzătorului produsului.
+                <StarRatings
+                    rating={rating}
+                    starRatedColor='yellow'
+                    changeRating={setRating}
+                    numberOfStars={5}
+                    name='rating'
+                />
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                    Închideți
+                </Button>
+                <Button variant="primary" onClick={handleConfirm}>
+                    Confirmați
+                </Button>
+            </Modal.Footer>
+        </Modal>
+
+        </>
     )
 }
 

@@ -13,7 +13,8 @@ CREATE TABLE `TBUsers` (
 CREATE TABLE `TBUserStatistics` (
   `IdUserStatistics` BIGINT NOT NULL AUTO_INCREMENT,
   `IdUser` BIGINT NOT NULL,
-  `UserAvgRating` DECIMAL(2,2) NOT NULL DEFAULT 0,
+  `UserAvgRating` DECIMAL(4,2) NOT NULL DEFAULT 0,
+  `ReviewsReceived` INT NOT NULL DEFAULT 0,
   `SoldItems` INT NOT NULL DEFAULT 0,
   `ReadBooks` INT NOT NULL DEFAULT 0,
   `UpdatedAt` DATETIME NOT NULL,

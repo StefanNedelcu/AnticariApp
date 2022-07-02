@@ -14,9 +14,9 @@ public class UserController : ACController
     }
 
     [HttpGet("{userId}")]
-    public async Task<ActionResult<User>> GetUser(long userId)
+    public ActionResult<User> GetUser(long userId)
     {
-        var user = await _userService.GetUser(userId);
+        var user = _userService.GetUser(userId);
 
         return Ok(user);
     }

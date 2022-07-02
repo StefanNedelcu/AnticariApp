@@ -10,6 +10,10 @@ import axiosInstance from '../../config/Axios';
 const Wishlist = () => {
     const [currentUser, setCurrentUser] = useState(null);
     const [wishlist, setWishlist] = useState([]);
+    const [newItem, setNewItem] = useState({
+        bookTitle: '',
+        authorName: ''
+    });
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -31,6 +35,8 @@ const Wishlist = () => {
     }
 
     const deleteItem = (item) => {
+        if (loading) return;
+
         setLoading(true);
 
         axiosInstance.delete(`wishlist/${item.itemId}`)
@@ -41,11 +47,27 @@ const Wishlist = () => {
     }
 
     const markRead = (item) => {
+        if (loading) return;
+
         setLoading(true);
 
         axiosInstance.patch(`wishlist/${item.itemId}`)
             .then(() => {
                 item.status = 1;
+            })
+            .finally(() => setLoading(false));
+    }
+
+    const addWishlistItem = () => {
+        if (loading) return;
+
+        setLoading(true);
+
+        axiosInstance.post(`wishlist/user/${currentUser.userId}`,
+            newItem)
+            .then(({ data }) => {
+                const newWishlist = [...wishlist, data];
+                setWishlist(newWishlist);
             })
             .finally(() => setLoading(false));
     }
@@ -58,16 +80,20 @@ const Wishlist = () => {
         return 'success';
     }
 
+    const handleChange = (e) => {
+        setNewItem({ ...newItem, [e.target.name]: e.target.value });
+    };
+
     return (
         <>
         <NavMenu />
         {currentUser &&
         <Row className='height-95'>
             <Col xs={9} >
-                <Container className='mt-5 mb-3' style={{fontSize: '1.75em'}}>
+                <Container className='mt-5 mb-3'>
                     <h1 className='text-center mb-5'>Gestionați lista de dorințe</h1>
-                    {!loading && wishlist.map(item => 
-                        <Row className='mb-3' key={item.itemId}>
+                    {wishlist.map(item => 
+                        <Row className='mb-3' key={item.itemId} style={{fontSize: '1.75em'}}>
                             <Badge bg={getBackground(item)} className='px-4 border-5 d-flex justify-content-between align-middle'>
                                 <span>{item.bookTitle} -- {item.authorName}</span>
                                 <span>
@@ -85,16 +111,28 @@ const Wishlist = () => {
                     <Row>
                         <Col xs={12} md={5}>
                             <Form.Group className="mb-3" >
-                                <Form.Control type="text" placeholder="Titlu" />
+                                <Form.Control type="text" placeholder="Titlu" 
+                                    name="bookTitle" id="bookTitle"
+                                    value={newItem.bookTitle}
+                                    onChange={handleChange}
+                                />
                             </Form.Group>
                         </Col>
                         <Col xs={12} md={5}>
                             <Form.Group className="mb-3" >
-                                <Form.Control type="text" placeholder="Autor" />
+                                <Form.Control type="text" placeholder="Autor"
+                                    name="authorName" id="authorName"
+                                    value={newItem.authorName} 
+                                    onChange={handleChange}
+                                />
                             </Form.Group>
                         </Col>
-                        <Col xs={12} md={2}>
-                            <Button variant='primary' disabled={loading}>Adăugați</Button>
+                        <Col xs={12} md={2} style={{textAlign: 'right'}}>
+                            <Button variant='primary' disabled={loading}
+                                onClick={() => {addWishlistItem()}}
+                            >
+                                Adăugați
+                            </Button>
                         </Col>
                     </Row>
                 </Container>

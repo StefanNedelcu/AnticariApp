@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axiosInstance from "../../config/Axios";
 import Image from 'react-bootstrap/Image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAward, faTrophy } from '@fortawesome/free-solid-svg-icons'
+import { faAward, faTrophy, faStar } from '@fortawesome/free-solid-svg-icons'
 
 const Profile = (props) => {
     const [user, setUser] = useState(null);    
@@ -36,10 +36,16 @@ const Profile = (props) => {
             />
             <h3>{user.firstName}</h3>
             <h3>{user.lastName}</h3>
-            <div><strong>Email:</strong> <em>{user.email}</em></div>
-            <div><strong>Telefon:</strong> <em>{user.phoneNumber}</em></div>
-            <div><strong>Adresa:</strong> <em>{user.address}</em></div>
-            <div><strong>Rating mediu:</strong> <em>{user.statistics.avgRating ? user.statistics.avgRating : "N/A"}</em></div>
+            <div><strong>Email: </strong><em>{user.email}</em></div>
+            <div><strong>Telefon: </strong><em>{user.phoneNumber}</em></div>
+            <div><strong>Adresa: </strong><em>{user.address}</em></div>
+            <div><strong>Rating: </strong>
+                <em>
+                    {user.statistics.avgRating ? 
+                    <>{user.statistics.avgRating} <FontAwesomeIcon icon={faStar} className='text-warning'/></> : 
+                    "N/A"}
+                </em>
+            </div>
         </div>
         </>
     )

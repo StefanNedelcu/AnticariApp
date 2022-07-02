@@ -14,10 +14,29 @@ public class PostingController : ACController
         _postingService = postingService;
     }
 
+    [HttpGet("user/{userId}")]
+    public  ActionResult<Homepage> GetHomepage(long userId)
+    {
+        var result = _postingService.GetHomepage(userId);
+
+        return Ok(result);
+    }
+
     [HttpPost]
     public async Task<ActionResult> AddPosting(AddPostingRequest request)
     {
         await _postingService.AddPosting(request);
+
+        return Ok();
+    }
+
+    [HttpPatch("{postingId}")]
+    [AllowAnonymous]
+    public async Task<ActionResult> MarkPostingClosed(
+        long postingId,
+        [FromBody] AddReviewRequest request)
+    {
+        await _postingService.MarkPostingClosed(postingId, request);
 
         return Ok();
     }
