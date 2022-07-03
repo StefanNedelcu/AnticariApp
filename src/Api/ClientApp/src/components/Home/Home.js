@@ -52,8 +52,11 @@ const Home = () => {
       <Col xs={9}>
         <Container>
           <Row className='mt-3'>
-              <h3>Recomandate pentru tine</h3>
-              <hr />
+              {homepage.recommendations.length > 0 &&
+              <>
+                <h3>Recomandate pentru tine</h3>
+                <hr />
+              </>}
           </Row>
           <Row className='d-flex justify-content-between'>            
             {homepage.recommendations.map(item => 

@@ -132,6 +132,7 @@ public class PostingService : DataService, IPostingService
         }
         posting.PostingStatus = PostingStatus.Closed.AsInt();
         ownerStatistics.SoldItems++;
+        ownerStatistics.UpdatedAt = DateTime.Now;
 
         await _context.SaveChangesAsync();
     }
