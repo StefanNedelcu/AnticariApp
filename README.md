@@ -1,6 +1,7 @@
 # AnticariApp
  Project of Stefan Nedelcu which consists in a book-exchange platform.
- 
+ ![Postings page](https://i.imgur.com/NNbekxI.png)
+
 ### Implemented functionalities
 
 - Authentication & Authorization
